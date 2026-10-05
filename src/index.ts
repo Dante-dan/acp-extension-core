@@ -1,4 +1,5 @@
 export * from './capabilities.js';
+export * from './dictation.js';
 export * from './elicitation.js';
 export * from './methods.js';
 export * from './rate-limits.js';

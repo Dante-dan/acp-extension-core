@@ -69,4 +69,6 @@ export type LodyExtensionCapabilities = {
   compaction?: LodyVersionOneCapability;
   sessionHistory?: LodyVersionOneCapability;
   worktreeProject?: LodyVersionOneCapability;
+  /** Isolated, tool-free WebRTC capture; never controls an ordinary ACP session. */
+  dictation?: LodyVersionOneCapability;
 };

@@ -1,4 +1,8 @@
 import type { LodySubagentEvent } from './subagent-events.js';
+import type {
+  LodyDictationStartRequest, LodyDictationStartResponse,
+  LodyDictationStopRequest, LodyDictationStopResponse, LodyDictationUpdate,
+} from './dictation.js';
 
 export const LODY_EXTENSION_METHODS = {
   subagentEvent: '_lody/subagents/event',
@@ -12,12 +16,23 @@ export const LODY_EXTENSION_METHODS = {
   subagentsList: '_lody/subagents/list',
   subagentsCancel: '_lody/subagents/cancel',
   subagentsOutput: '_lody/subagents/output',
+  dictationStart: '_lody/dictation/start',
+  dictationStop: '_lody/dictation/stop',
+  dictationUpdate: '_lody/dictation/update',
 } as const;
 
 export type LodyExtensionMethod =
   (typeof LODY_EXTENSION_METHODS)[keyof typeof LODY_EXTENSION_METHODS];
 
 export type LodyExtensionRequestMap<TPrompt = unknown> = {
+  [LODY_EXTENSION_METHODS.dictationStart]: {
+    params: LodyDictationStartRequest;
+    result: LodyDictationStartResponse;
+  };
+  [LODY_EXTENSION_METHODS.dictationStop]: {
+    params: LodyDictationStopRequest;
+    result: LodyDictationStopResponse;
+  };
   [LODY_EXTENSION_METHODS.rateLimitsGet]: {
     params: RateLimitsGetRequest;
     result: RateLimitsGetResponse;
@@ -49,6 +64,7 @@ export type LodyExtensionRequestMap<TPrompt = unknown> = {
 };
 
 export type LodyExtensionNotificationMap = {
+  [LODY_EXTENSION_METHODS.dictationUpdate]: LodyDictationUpdate;
   [LODY_EXTENSION_METHODS.subagentEvent]: LodySubagentEvent;
   [LODY_EXTENSION_METHODS.sessionUsageUpdate]: SessionUsageUpdate;
   [LODY_EXTENSION_METHODS.rateLimitsUpdate]: RateLimitsUpdate;

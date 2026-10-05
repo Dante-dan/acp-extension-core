@@ -26,6 +26,15 @@ The following public `acp-extension-*` repositories under [github.com/LodyAI](ht
 
 ## Contents
 
+Experimental `dictation: { version: 1 }` negotiates isolated WebRTC signaling
+through `_lody/dictation/start`, `/stop`, and `/update`. Each capture uses a unique
+caller-owned `captureId`; only SDP and lifecycle status cross ACP. A start ACK
+does not mean listening. Stop must cancel pending setup as well as live capture,
+and release native resources on connection closure. Adapters must not advertise
+this capability until they enforce tool-free capture independently of model
+instructions. It never starts, sends to, or interrupts an ordinary ACP session.
+These types describe a proposed extension; they do not establish native support.
+
 - [Reference implementations](#reference-implementations)
 - [Design principles](#design-principles)
 - [Getting started](#getting-started)
