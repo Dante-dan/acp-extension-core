@@ -207,3 +207,7 @@ npm test           # 先构建，再运行契约测试
 ## 许可证
 
 MIT，详见 [LICENSE](LICENSE)。
+
+## 可选运行时能力
+
+`runtimeCapabilities: { version: 1 }` 声明 `_lody/runtime/capabilities`。`list` 和 `get` 读取运行时拥有的安装与前置条件状态。`install` 需要 `id` 和 `confirmed: true`；客户端必须先取得用户明确确认。安装由运行时拥有，初始 `install.running: true` 响应不代表完成。客户端用 `isRuntimeCapabilitiesResponse` 验证响应，轮询 `get`，不终止正在安装的运行时。系统权限或浏览器连接缺失分别显示。

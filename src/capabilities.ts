@@ -56,6 +56,8 @@ export type LodyRateLimitsCapability = LodyVersionOneCapability & {
 };
 
 export type LodyExtensionCapabilities = {
+  /** Runtime-owned optional installation, with explicit user confirmation. */
+  runtimeCapabilities?: LodyVersionOneCapability;
   subagentEvents?: LodyVersionOneCapability;
   /** Owns title generation; pushes tagged session_info_update titles without a client request. */
   sessionTitle?: LodyVersionOneCapability;

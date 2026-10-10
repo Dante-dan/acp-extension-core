@@ -207,3 +207,7 @@ Each of these fields lives under `_meta.lody` on a message ACP already defines.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Optional runtime capabilities
+
+`runtimeCapabilities: { version: 1 }` advertises `_lody/runtime/capabilities`. `list` and `get` read runtime-owned installation and prerequisite state. `install` requires `id` and `confirmed: true`; clients must obtain explicit user confirmation first. The runtime owns installation, and an initial `install.running: true` response is not completion. Clients validate responses with `isRuntimeCapabilitiesResponse` and poll `get` without terminating the installing runtime. Missing OS permissions or browser connections remain visible independently.

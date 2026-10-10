@@ -1,6 +1,8 @@
+import type { RuntimeCapabilitiesRequest, RuntimeCapabilitiesResponse } from './runtime-capabilities.js';
 import type { LodySubagentEvent } from './subagent-events.js';
 
 export const LODY_EXTENSION_METHODS = {
+  runtimeCapabilities: '_lody/runtime/capabilities',
   subagentEvent: '_lody/subagents/event',
   sessionUsageUpdate: '_lody/session/usage_update',
   rateLimitsGet: '_lody/rate_limits/get',
@@ -18,6 +20,7 @@ export type LodyExtensionMethod =
   (typeof LODY_EXTENSION_METHODS)[keyof typeof LODY_EXTENSION_METHODS];
 
 export type LodyExtensionRequestMap<TPrompt = unknown> = {
+  [LODY_EXTENSION_METHODS.runtimeCapabilities]: { params: RuntimeCapabilitiesRequest; result: RuntimeCapabilitiesResponse };
   [LODY_EXTENSION_METHODS.rateLimitsGet]: {
     params: RateLimitsGetRequest;
     result: RateLimitsGetResponse;
